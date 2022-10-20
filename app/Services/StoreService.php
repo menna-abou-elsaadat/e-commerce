@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Models\Store;
+use App\Models\Product;
+use App\Models\StoreProduct;
 
 class StoreService
 {
@@ -15,6 +17,40 @@ class StoreService
 		$new_store->save();
 
 		return $new_store;
+	}
+
+	public static function addProductToStore($arabic_name,$english_name,$arabic_description,$english_description,$store_id,$product_price,$product_quantity,$vat_calculation_method,$vat_calculation_value)
+	{
+		$product = self::addProduct($arabic_name,$english_name,$arabic_description,$english_description);
+		$store_product = self::addStoreProduct($store_id,$product->id,$product_price,$product_quantity,$vat_calculation_method,$vat_calculation_value);
+
+		return $store_product;
+	}
+
+	public static function addProduct($arabic_name,$english_name,$arabic_description,$english_description)
+	{
+		$new_product = new Product();
+		$new_product->arabic_name = $arabic_name;
+		$new_product->english_name = $english_name;
+		$new_product->arabic_description = $arabic_description;
+		$new_product->english_description = $english_description;
+		$new_product->save();
+
+		return $new_product;
+	}
+
+	public static function addStoreProduct($store_id,$product_id,$product_price,$product_quantity,$vat_calculation_method,$vat_calculation_value)
+	{
+		$store_product = new StoreProduct();
+		$store_product->store_id = $store_id;
+		$store_product->product_id = $product_id;
+		$store_product->product_price = $product_price;
+		$store_product->product_quantity = $product_quantity;
+		$store_product->vat_calculation_method = $vat_calculation_method;
+		$store_product->vat_calculation_value = $vat_calculation_value;
+		$store_product->save();
+
+		return $store_product;
 	}
 }
 ?>

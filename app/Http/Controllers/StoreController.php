@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Store;
+use App\Models\StoreProduct;
 use App\Http\Resources\StoreResource;
+use App\Http\Resources\StoreProductsResource;
 use App\Services\StoreService;
 
 class StoreController extends Controller
@@ -19,5 +21,13 @@ class StoreController extends Controller
         $data = $request->input();
         $store  = StoreService::create($data['name'],$data['merchant_id'],$data['shipping_cost']);
         return new StoreResource(Store::find($store->id));
+    }
+
+    public function addProductToStore(Request $request)
+    {
+        $data = $request->input();
+        $store_product = StoreService::addProductToStore($data['arabic_name'],$data['english_name'],$data['arabic_description'],$data['english_description'],$data['store_id'],$data['product_price'],$data['product_quantity'],$data['vat_calculation_method'],$data['vat_calculation_value']);
+
+         return StoreProductsResource::collection(StoreProduct::where('store_id',$data['store_id'])->get());
     }
 }

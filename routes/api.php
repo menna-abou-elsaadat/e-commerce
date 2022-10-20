@@ -29,5 +29,6 @@ Route::prefix('/user')->group(function () {
 Route::prefix('/store')->group(function () {
     Route::get('/{merchant_id}', [StoreController::class, 'index']);
     Route::post('/create', [StoreController::class, 'create']);
+    Route::post('/add_product', [StoreController::class, 'addProductToStore']);
 });
 //////////////////////////////// store endpoints////////////////////////////////
