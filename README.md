@@ -38,7 +38,7 @@ API Endpoints:
 4- show store products
 
 	URL: /api/store/show_store_products/{store_id} (method:get)
-	return: 
+	return: store products
 
 
 5- show product details from a store
