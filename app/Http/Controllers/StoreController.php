@@ -33,8 +33,6 @@ class StoreController extends Controller
 
     public function showStoreProducts($store_id)
     {
-        dd('ssss');
-        dd(StoreProduct::where('store_id',$store_id)->get());
         return StoreProductsResource::collection(StoreProduct::where('store_id',$store_id)->get());
     }
 

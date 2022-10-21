@@ -56,3 +56,33 @@ API Endpoints:
 	params: store_id, user_id, purchased_products( array of products [[product_id,quantity],[product_id,quantity]])
 
 	return: total
+
+7- Show all merchant stores
+	
+	URL: /api/store/{merchant_id} (method:get)
+	return: array of merchant stores
+========================================================================================
+
+Database Structure
+-------------------
+
+1- users table (id, name, email, password, role (user|merchant))
+
+2- Stores table (id, name, user_id(whose role is merchant), shipping_cost)
+
+3- Products table (id, arabic_name, english_name, arabic_description, english_description)
+
+4- store_products (id, store_id, product_id, product_quantity, sold (number of products that was sold), product_price, vat_calculation_method(should be percentage or value), vat_calculation_value )
+
+5- user_purchases table (id, user_id(whose role is user), store_id, shipping_cost(I added this column here because if store shipping cost was changed, user has shipping cost value that he paid) )
+
+6- user_purchases_details table (id, user_purchase_id, price(product's price that user paid), quantity, vat)
+
+========================================================================================
+
+Adding products Cycle
+----------------------
+1- Create a merchant and user from create user url
+2- Create store for the created merchant
+3- Add product to the created store  
+4- Use created user to add products to cart and create user purchase record
