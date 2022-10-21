@@ -22,8 +22,7 @@ class StoreProductsResource extends JsonResource
             'product_arabic_description' => $this->product->arabic_description,
             'product_english_description' => $this->product->english_description,
             'product_price' => $this->product_price,
-            'vat_calculation_method' => $this->vat_calculation_method,
-            'vat_calculation_value' => $this->vat_calculation_value,
+            'vat' => $this->calculateVAT(),
             'product_quantity' => $this->product_quantity
         ];
     }

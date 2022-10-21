@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('user_purchase_id')->nullable();
             $table->integer('product_id')->nullable();
             $table->float('price')->nullable();
+            $table->integer('quantity')->nullable();
             $table->float('vat')->nullable();
             $table->timestamps();
         });

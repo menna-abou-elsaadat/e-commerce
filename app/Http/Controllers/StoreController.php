@@ -30,4 +30,25 @@ class StoreController extends Controller
 
          return StoreProductsResource::collection(StoreProduct::where('store_id',$data['store_id'])->get());
     }
+
+    public function showStoreProducts($store_id)
+    {
+        dd('ssss');
+        dd(StoreProduct::where('store_id',$store_id)->get());
+        return StoreProductsResource::collection(StoreProduct::where('store_id',$store_id)->get());
+    }
+
+    public function showStoreProduct(Request $request)
+    {
+        $data = $request->input();
+        return new StoreProductsResource(StoreProduct::where('store_id',$data['store_id'])->where('product_id',$data['product_id'])->first());
+
+    }
+
+    public function editStoreProduct(Request $request)
+    {
+        $data = $request->input();
+        $store_product = StoreService::editStoreProduct($data);
+        return new StoreProductsResource(StoreProduct::find($store_product->id));
+    }
 }

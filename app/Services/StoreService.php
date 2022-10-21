@@ -52,5 +52,26 @@ class StoreService
 
 		return $store_product;
 	}
+
+	public static function editStoreProduct($data)
+	{
+		$store_product = storeProduct::where('store_id',$data['store_id'])->where('product_id',$data['product_id'])->first();
+
+        if (isset($data['price'])) {
+            $store_product->product_price = $data['price'];
+        }
+        if (isset($data['quantity'])) {
+            $store_product->quantity = $data['quantity'];
+        }
+        if (isset($data['vat_calculation_method'])) {
+            $store_product->vat_calculation_method = $data['vat_calculation_method'];
+        }
+        if (isset($data['vat_calculation_value'])) {
+            $store_product->vat_calculation_value = $data['vat_calculation_value'];
+        }
+
+        $store_product->save();
+        return $store_product;
+	}
 }
 ?>

@@ -21,9 +21,10 @@ class StoreProduct extends Model
 
     public function calculateVAT()
     {
+
         if ($this->vat_calculation_method == 'percentage') {
-            
-            return ($this->price * $this->vat_calculation_value) / 100;
+                
+            return ($this->product_price * $this->vat_calculation_value) / 100;
         }
 
         if ($this->vat_calculation_method == 'value') {

@@ -31,6 +31,8 @@ Route::prefix('/store')->group(function () {
     Route::get('/{merchant_id}', [StoreController::class, 'index']);
     Route::post('/create', [StoreController::class, 'create']);
     Route::post('/add_product', [StoreController::class, 'addProductToStore']);
+    Route::get('/show_store_products/{store_id}', [StoreController::class, 'showStoreProducts']);
+    Route::post('/show_store_product', [StoreController::class, 'showStoreProduct']);
 });
 //////////////////////////////// store endpoints////////////////////////////////
 

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('product_id')->nullable();
             $table->integer('product_price')->nullable();
             $table->integer('product_quantity')->nullable();
+            $table->integer('sold')->default(0);
             $table->string('vat_calculation_method')->nullable(); //added, percentage, value
             $table->float('vat_calculation_value')->nullable();
             $table->timestamps();

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\UserPurchaseService;
+use App\Http\Resources\userPurchaseResource;
+use App\Models\UserPurchase;
 
 class UserPurchasesController extends Controller
 {
@@ -14,6 +16,6 @@ class UserPurchasesController extends Controller
         eval("\$purchased_products = $purchased_products;");
         $user_purchase = UserPurchaseService::createNewUserPurchase($data['user_id'],$data['store_id'],$purchased_products);
 
-        return $user_purchase->total;
+        return new userPurchaseResource(UserPurchase::find($user_purchase->id));
     }
 }
