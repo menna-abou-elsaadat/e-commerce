@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserPurchasesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,9 @@ Route::prefix('/store')->group(function () {
     Route::post('/add_product', [StoreController::class, 'addProductToStore']);
 });
 //////////////////////////////// store endpoints////////////////////////////////
+
+//////////////////////////////// user purchase endpoints////////////////////////////////
+Route::prefix('/user_purchase')->group(function () {
+    Route::post('/create_user_purchase', [UserPurchasesController::class, 'createUserPurchase']);
+});
+//////////////////////////////// user purchase endpoints////////////////////////////////

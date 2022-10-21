@@ -18,4 +18,19 @@ class StoreProduct extends Model
     {
         return $this->belongsTo(Store::class,'store_id');
     }
+
+    public function calculateVAT()
+    {
+        if ($this->vat_calculation_method == 'percentage') {
+            
+            return ($this->price * $this->vat_calculation_value) / 100;
+        }
+
+        if ($this->vat_calculation_method == 'value') {
+            
+            return $this->vat_calculation_value;
+        }
+
+        return 0;
+    }
 }

@@ -27,4 +27,5 @@ class StoreProductsResource extends JsonResource
             'product_quantity' => $this->product_quantity
         ];
     }
+
 }
